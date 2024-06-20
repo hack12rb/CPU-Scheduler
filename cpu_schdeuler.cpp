@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+// SJF-Selects process with shortest burst time first, reducing average waiting time but risking starvation for longer processes.
 bool cmp_SJF(pair<int, vector<int>> process1, pair<int, vector<int>> process2) {
     if (process1.second[2] != process2.second[2]) {
         return process1.second[2] < process2.second[2];
@@ -53,7 +53,7 @@ void SJF(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pai
     }
 }
 
-
+// LJF-Selects process with longest burst time first, aiming to minimize context switches but increasing average waiting time.
 bool cmp_LJF(pair<int, vector<int>> process1, pair<int, vector<int>> process2){
     if(process1.second[2] != process2.second[2]){
         return process1.second[2] > process2.second[2];
@@ -106,7 +106,7 @@ void LJF(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pai
     }
 }
 
-
+// SRJF-Preemptively selects process with shortest remaining burst time, minimizing average turnaround time but increasing context switches.
 bool cmp_SRJF(pair<int, vector<int>> process1, pair<int, vector<int>> process2){
     if(process1.second[2] != process2.second[2]){
         return process1.second[2] < process2.second[2];
@@ -167,7 +167,7 @@ void SRJF(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pa
     }
 }
 
-
+// LRJF-Selects process with longest remaining burst time, leading to high turnaround times and reduced context switching.
 bool cmp_LRJF(pair<int, vector<int>> process1, pair<int, vector<int>> process2){
     if(process1.second[2] != process2.second[2]){
         return process1.second[2] > process2.second[2];
@@ -282,7 +282,7 @@ void FCFS(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pa
     }
 }
 
-
+// MLFQ-Uses multiple priority queues, dynamically adjusting process priority based on behavior and aging, balancing responsiveness and throughput.
 bool cmp_MLFQ(pair<int, vector<int>> process1, pair<int, vector<int>> process2){
     if (process1.first != process2.first){
         return process1.first > process2.first;
@@ -351,7 +351,7 @@ void MLFQ(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pa
         }
     }
 }
-
+// PS-Schedules processes based on priority levels, with higher priority executing first; risk of starvation for lower priority processes.
 bool cmp_PS(pair<int, vector<int>> process1, pair<int, vector<int>> process2){
     if (process1.first != process2.first){
         return process1.first > process2.first;
@@ -412,7 +412,7 @@ void PS(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pair
     }
 }
 
-
+// RR-Assigns fixed time quantum cyclically to processes, ensuring fairness and responsiveness with potential higher average turnaround time.
 void RR(int totalBurstTime, vector<pair<int, vector<int>>> taskList, vector<pair<int, vector<int>>> &originalTaskList) {
     int currentTime = 0;
     int timeQuantum = 3;
